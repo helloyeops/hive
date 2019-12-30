@@ -3860,4 +3860,31 @@ public final class Utilities {
           loader == null ? "null" : loader.getClass().getSimpleName());
     }
   }
+
+  /**
+   * Add new elements to the classpath.
+   *
+   * @param newPaths
+   *          Array of classpath elements
+   */
+  public static ClassLoader addToClassPath(ClassLoader cloader, String[] newPaths) throws Exception {
+    URLClassLoader loader = (URLClassLoader) cloader;
+    List<URL> curPath = Arrays.asList(loader.getURLs());
+    ArrayList<URL> newPath = new ArrayList<URL>();
+
+    // get a list with the current classpath components
+    for (URL onePath : curPath) {
+      newPath.add(onePath);
+    }
+    curPath = newPath;
+
+    for (String onestr : newPaths) {
+      URL oneurl = urlFromPathString(onestr);
+      if (oneurl != null && !curPath.contains(oneurl)) {
+        curPath.add(oneurl);
+      }
+    }
+
+    return new URLClassLoader(curPath.toArray(new URL[0]), loader);
+  }
 }
