@@ -753,6 +753,7 @@
   <build>
     <sourceDirectory>${basedir}/src/java</sourceDirectory>
     <testSourceDirectory>${basedir}/src/test</testSourceDirectory>
+    <finalName>${project.artifactId}-${project.version}-accu</finalName>
     <plugins>
       <!-- plugins are always listed in sorted order by groupId, artifectId -->
       <plugin>
