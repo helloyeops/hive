@@ -37,6 +37,9 @@ import org.apache.hadoop.util.ReflectionUtils;
  * and finally arrives to this operator.
  */
 public class ListSinkOperator extends Operator<ListSinkDesc> {
+  public static final String OUTPUT_FORMATTER = "output.formatter";
+  public static final String OUTPUT_PROTOCOL = "output.protocol";
+
   private transient List res;
   private transient FetchFormatter fetcher;
   private transient int numRows;
